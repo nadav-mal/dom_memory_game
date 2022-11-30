@@ -1,1 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ex4</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+</head>
+<body>
 
+<div class="container">
+    <h1 class="display-5 fw-bold">Memory Game</h1>
+    <div class="row">
+        <div class="col-12 col-md-6 col-lg-6 col-sm-4">
+            <p> Click on the cards to flip them and find the matching pairs with as little flips as possible </p>
+        </div>
+    </div>
+    <form id="form">
+        <div style="padding-bottom: 20px" class="row">
+            <div class="col-12 col-md-6 col-lg-6 col-sm-4">
+                <label for="name">Insert name</label>
+                <input type="text" id="name" name="name">
+            </div>
+        </div>
+        <div id="submitRow" class = "row">
+            <div class="col-md-auto">
+                <button  type="submit" class="btn btn-primary">Play</button>
+            </div>
+            <div class="col-md-auto">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#settingsModal">
+                    Settings
+                </button>
+            </div>
+            <div class="col-md-auto">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    High Scores
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <!--Modal for Settings -->
+    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="settingsModalLabel">Settings </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Large button groups (default and split) -->
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-6 col-sm-4"> <p>Insert data for rows</p></div>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Rows
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item">2</a></li>
+                                <li><a class="dropdown-item">3</a></li>
+                                <li><a class="dropdown-item">4</a></li>
+                                <li><a class="dropdown-item">5</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-md-6 col-lg-6 col-sm-4"> <p>Insert data for rows</p></div>
+                        <div class="btn-group">
+                            <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Rows
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item">2</a></li>
+                                <li><a class="dropdown-item">3</a></li>
+                                <li><a class="dropdown-item">4</a></li>
+                                <li><a class="dropdown-item">5</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close Settings BTN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal for High Scores-->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Message title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body"> High Scores Body </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close High Scores BTN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+        crossorigin="anonymous"></script>
+<script src="js/ex4.js"></script>
+
+</body>
+
+</html>
