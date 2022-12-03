@@ -23,15 +23,15 @@
                 <input type="text" id="name" name="name">
             </div>
         </div>
-        <div id="submitRow" class = "row">
+        <div id="submitRow" class="row" style="padding-bottom: 30px">
             <div class="col-md-auto">
-                <button  type="submit" class="btn btn-primary">Play</button>
+                <!-- Play button -->
+                <button type="submit" class="btn btn-primary">Play</button>
             </div>
             <div class="col-md-auto">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#settingsModal">
-                    Settings
-                </button>
+                <!-- Settings button -->
+
+                <button id="settings" class="btn btn-secondary" type="button">Settings</button>
             </div>
             <div class="col-md-auto">
                 <!-- Button trigger modal -->
@@ -42,51 +42,7 @@
         </div>
     </form>
 
-    <!--Modal for Settings -->
-    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="settingsModalLabel">Settings </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <!-- Large button groups (default and split) -->
-                    <div class="row">
-                        <div class="col-12 col-md-6 col-lg-6 col-sm-4"> <p>Insert data for rows</p></div>
-                        <div class="btn-group">
-                            <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Rows
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item">2</a></li>
-                                <li><a class="dropdown-item">3</a></li>
-                                <li><a class="dropdown-item">4</a></li>
-                                <li><a class="dropdown-item">5</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12 col-md-6 col-lg-6 col-sm-4"> <p>Insert data for rows</p></div>
-                        <div class="btn-group">
-                            <button class="btn btn-secondary btn-lg dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Rows
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item">2</a></li>
-                                <li><a class="dropdown-item">3</a></li>
-                                <li><a class="dropdown-item">4</a></li>
-                                <li><a class="dropdown-item">5</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close Settings BTN</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <!-- Modal for High Scores-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -95,13 +51,59 @@
                     <h5 class="modal-title" id="exampleModalLabel">Message title</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body"> High Scores Body </div>
+                <div class="modal-body"> High Scores Body</div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close High Scores BTN</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close High Scores BTN
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+    <div id="input-data">
+        <form>
+            <div class="row">
+                <div class="col-6">
+                    <p> Select amount of rows:</p>
+                    <select id="rows-data">
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <div class="col-6">
+                    <p> Select amount of rows:</p>
+                    <select id="cols-data">
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <p>Delay(in seconds):</p>
+                <div class="col">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary btn-lg dropdown-toggle " type="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                            2
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item">2</a></li>
+                            <li><a class="dropdown-item">3</a></li>
+                            <li><a class="dropdown-item">4</a></li>
+                            <li><a class="dropdown-item">5</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <list id="matrix">
+
+    </list>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
@@ -109,6 +111,8 @@
         crossorigin="anonymous"></script>
 <script src="js/ex4.js"></script>
 
+
 </body>
 
 </html>
+
