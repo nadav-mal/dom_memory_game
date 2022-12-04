@@ -11,14 +11,16 @@ const initAndDisplayBoard = (gameData) => {
     let permutation = generatePermutation(gameData.rows * gameData.cols)
     console.log("after generating")
     for(let i=0; i<gameData.rows; i++){
-        const newRow = document.createElement("li")
+        const newRow = document.createElement("ul")
+
         for(let j=0; j<gameData.cols; j++){
             const img = document.createElement('img');
-            img.src = "/images" + permutation[i * j] + ".jpg";
+            img.src = "Images/" +permutation[ i*gameData.cols + j] + ".jpg";//   Images/5.jpg
             newRow.appendChild(img)
         }
         data.appendChild(newRow)
     }
+
     console.log(data)
 }
 const generatePermutation = (N) =>{
@@ -34,8 +36,10 @@ const generatePermutation = (N) =>{
     }
     let fisherYatesShuffle = (N, curr) => {
         let i = N - 1
+
         while (i >= 1) {
-            let rand = Math.random() * (i);
+            console.log(curr[i])
+            let rand = Math.floor(Math.random() * (i));
             let temp = curr[i]
             curr[i] = curr[rand]
             curr[rand] = temp
@@ -65,7 +69,9 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log("input is valid")
             initAndDisplayBoard(gameData)
         } else
-            console.log("Not Validated")
+        {
+            document.getElementById("name").innerHTML= "name is invalid"
+        }
         // if the product is not valid, we display the errors:
         //   document.getElementById("errorMessages").innerHTML = utilities.convertErrorsToHtml(errorMessages);
     });
@@ -75,14 +81,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 let toggle = () => {
-    console.log("In 39")
     let element = document.getElementById("input-data");
-    console.log(element)
     let hidden = element.getAttribute("hidden");
 
-    if (hidden) {
+    if (hidden)
         element.removeAttribute("hidden");
-    } else {
+     else
         element.setAttribute("hidden", "hidden");
-    }
 }
