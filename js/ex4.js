@@ -1,4 +1,9 @@
 
+const runGame = (gameData) => {
+    toggleSettingsUI()
+    initAndDisplayBoard(gameData)
+}
+
 const validateBoardInput = (gameData) => {
     let isEven = ((gameData.rows * gameData.cols) % 2 === 0)
     let nameValid = (gameData.name.length <= 12 && gameData.name.length > 0 && !(/\W/.test(gameData.name)))
@@ -8,21 +13,48 @@ const validateBoardInput = (gameData) => {
 
 const initAndDisplayBoard = (gameData) => {
     const data = document.getElementById("matrix")
-    let permutation = generatePermutation(gameData.rows * gameData.cols)
     console.log("after generating")
-    for(let i=0; i<gameData.rows; i++){
-        const newRow = document.createElement("ul")
+    let permutation = generatePermutation(gameData.rows * gameData.cols)
+    let prevImg = {};
+    let counter = 0;
+    let revealed = false;
 
-        for(let j=0; j<gameData.cols; j++){
+    for(let i=0; i<gameData.rows; i++) {
+        const newRow = document.createElement("ul")
+        for(let j=0; j<gameData.cols; j++) {
             const img = document.createElement('img');
-            img.src = "Images/" +permutation[ i*gameData.cols + j] + ".jpg";//   Images/5.jpg
+            img.src = "Images/card.jpg";
+            let index = i*gameData.cols + j;
+            img.addEventListener("click", (event) => {
+                if(!revealed) {
+                    let path = "Images/" + permutation[index] + ".jpg";
+                    img.src = path;
+
+                    if(counter % 2 !== 0) {
+                        revealed = true;
+                        if(img.src !== prevImg.src)
+                            setTimeout(() => {
+                                img.src = "Images/card.jpg";
+                                prevImg.src = "Images/card.jpg";
+                                revealed = false;
+                            }, 2000)
+                        else
+                            revealed = false;
+                    }
+                    else
+                        prevImg = img;
+
+                    counter++;
+                }
+            });
+
             newRow.appendChild(img)
         }
         data.appendChild(newRow)
     }
-
     console.log(data)
 }
+
 const generatePermutation = (N) =>{
     let makeStartingPermutation = (N) =>{
         let curr = ""
@@ -60,14 +92,12 @@ document.addEventListener("DOMContentLoaded", () => {
             name: document.getElementById("name").value.trim(),
             rows: document.getElementById("rows-data").value,
             cols: document.getElementById("cols-data").value.trim()
-            //cols: document.getElementById("NumOfCols").value.trim(),
             //displayTime: document.getElementById("displayTime").value.trim()
         }
-        //console.log("ROWS: " +prod.rows +" COLS: "+ prod.cols)
 
         if (validateBoardInput(gameData)) {
             console.log("input is valid")
-            initAndDisplayBoard(gameData)
+            runGame(gameData);
         } else
         {
             document.getElementById("name").innerHTML= "name is invalid"
@@ -75,17 +105,38 @@ document.addEventListener("DOMContentLoaded", () => {
         // if the product is not valid, we display the errors:
         //   document.getElementById("errorMessages").innerHTML = utilities.convertErrorsToHtml(errorMessages);
     });
-    document.getElementById("settings").addEventListener("click", toggle);
-
+    document.getElementById("settings").addEventListener("click", () => {
+        toggleHid("input-data")
+    });
+    document.getElementById("abandonBtn").addEventListener("click", abandon);
 });
 
+let abandon = () => {
+    toggleSettingsUI()
+    document.getElementById("matrix").innerHTML = "";
+}
 
-let toggle = () => {
-    let element = document.getElementById("input-data");
+let toggleSettingsUI = () => {
+    toggleHid("input-data")
+    toggleHid("submitRow")
+    toggleHid("nameRow")
+    toggleHid("abandonBtn")
+}
+
+let toggleHid = (id) => {
+    let element = document.getElementById(id);
+    console.log("here")
     let hidden = element.getAttribute("hidden");
 
     if (hidden)
         element.removeAttribute("hidden");
-     else
+    else
         element.setAttribute("hidden", "hidden");
+}
+
+let flipCards = () => {
+    document.querySelectorAll('img').forEach((img) => {
+        console.log(img)
+        img.src = "Images/card.jpg";
+    })
 }

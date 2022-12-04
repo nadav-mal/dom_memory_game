@@ -17,10 +17,10 @@
         </div>
     </div>
     <form id="form">
-        <div style="padding-bottom: 20px" class="row">
+        <div style="padding-bottom: 20px" class="row" id="nameRow">
             <div class="col-12 col-md-6 col-lg-6 col-sm-4">
                 <label for="name">Insert name</label>
-                <input type="text" id="name" name="name"  placeholder="Placeholder" required>
+                <input type="text" id="name" name="name" placeholder="Placeholder" required>
             </div>
         </div>
         <div id="submitRow" class="row" style="padding-bottom: 30px">
@@ -101,9 +101,14 @@
         </form>
     </div>
 
-    <list id="matrix">
+    <div class="row-12 row-md-6 row-lg-6 row-sm-4">
+        <list id="matrix">
 
-    </list>
+        </list>
+
+        <button id="abandonBtn" type="submit" class="btn btn-primary" hidden="hidden">Abandon</button>
+    </div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
