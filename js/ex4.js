@@ -12,9 +12,9 @@ const validateBoardInput = (gameData) => {
 }
 
 const initAndDisplayBoard = (gameData) => {
-    const data = document.getElementById("matrix")
-    console.log("after generating")
-    let permutation = generatePermutation(gameData.rows * gameData.cols)
+    const data = document.getElementById("matrix");
+    const permutation = generatePermutation(gameData.rows * gameData.cols)
+    const timeout = gameData.displayTime * 1000;
     let prevImg = {};
     let counter = 0;
     let revealed = false;
@@ -27,17 +27,15 @@ const initAndDisplayBoard = (gameData) => {
             let index = i*gameData.cols + j;
             img.addEventListener("click", (event) => {
                 if(!revealed) {
-                    let path = "Images/" + permutation[index] + ".jpg";
-                    img.src = path;
+                    img.src = "Images/" + permutation[index] + ".jpg";
 
                     if(counter % 2 !== 0) {
                         revealed = true;
                         if(img.src !== prevImg.src)
                             setTimeout(() => {
-                                img.src = "Images/card.jpg";
-                                prevImg.src = "Images/card.jpg";
+                                img.src = prevImg.src = "Images/card.jpg";
                                 revealed = false;
-                            }, 2000)
+                            }, timeout)
                         else
                             revealed = false;
                     }
@@ -47,21 +45,19 @@ const initAndDisplayBoard = (gameData) => {
                     counter++;
                 }
             });
-
             newRow.appendChild(img)
         }
-        data.appendChild(newRow)
+        data.appendChild(newRow);
     }
-    console.log(data)
 }
 
-const generatePermutation = (N) =>{
-    let makeStartingPermutation = (N) =>{
-        let curr = ""
+const generatePermutation = (N) => {
+    let makeStartingPermutation = (N) => {
+        let curr = []
         let index = 0
         while (index < N) {
-            curr += index.toString()
-            curr += index.toString()
+            curr.push(index)
+            curr.push(index)
             index++
         }
         return curr
@@ -70,16 +66,17 @@ const generatePermutation = (N) =>{
         let i = N - 1
 
         while (i >= 1) {
-            console.log(curr[i])
             let rand = Math.floor(Math.random() * (i));
-            let temp = curr[i]
-            curr[i] = curr[rand]
-            curr[rand] = temp
-            i--
+            swapElements(curr, rand, i);
+            i--;
         }
         return curr
     }
     return fisherYatesShuffle(N,makeStartingPermutation(N/2))
+}
+
+const swapElements = (arr, i1, i2) => {
+    arr[i1] = arr.splice(i2, 1, arr[i1])[0];
 }
 
 /**  upon loading the page, we bind handlers to the form and the button  */
@@ -91,8 +88,8 @@ document.addEventListener("DOMContentLoaded", () => {
         let gameData = {
             name: document.getElementById("name").value.trim(),
             rows: document.getElementById("rows-data").value,
-            cols: document.getElementById("cols-data").value.trim()
-            //displayTime: document.getElementById("displayTime").value.trim()
+            cols: document.getElementById("cols-data").value,
+            displayTime: document.getElementById("display-time").value
         }
 
         if (validateBoardInput(gameData)) {
@@ -117,9 +114,7 @@ let abandon = () => {
 }
 
 let toggleSettingsUI = () => {
-    toggleHid("input-data")
-    toggleHid("submitRow")
-    toggleHid("nameRow")
+    toggleHid("beforeGame")
     toggleHid("abandonBtn")
 }
 
@@ -132,11 +127,4 @@ let toggleHid = (id) => {
         element.removeAttribute("hidden");
     else
         element.setAttribute("hidden", "hidden");
-}
-
-let flipCards = () => {
-    document.querySelectorAll('img').forEach((img) => {
-        console.log(img)
-        img.src = "Images/card.jpg";
-    })
 }

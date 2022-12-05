@@ -10,97 +10,97 @@
 <body>
 
 <div class="container">
-    <h1 class="display-5 fw-bold">Memory Game</h1>
-    <div class="row">
+    <div class="row bg-light">
+        <h1 class="display-5 fw-bold">Memory Game</h1>
         <div class="col-12 col-md-6 col-lg-6 col-sm-4">
-            <p> Click on the cards to flip them and find the matching pairs with as little flips as possible </p>
+            <p>Click on the cards to flip them and find the matching pairs with as little flips as possible.</p>
         </div>
     </div>
-    <form id="form">
-        <div style="padding-bottom: 20px" class="row" id="nameRow">
-            <div class="col-12 col-md-6 col-lg-6 col-sm-4">
-                <label for="name">Insert name</label>
-                <input type="text" id="name" name="name" placeholder="Placeholder" required>
-            </div>
-        </div>
-        <div id="submitRow" class="row" style="padding-bottom: 30px">
-            <div class="col-md-auto">
-                <!-- Play button -->
-                <button type="submit" class="btn btn-primary">Play</button>
-            </div>
-            <div class="col-md-auto">
-                <!-- Settings button -->
 
-                <button id="settings" class="btn btn-secondary" type="button">Settings</button>
-            </div>
-            <div class="col-md-auto">
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    High Scores
-                </button>
-            </div>
-        </div>
-    </form>
-
-
-    <!-- Modal for High Scores-->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Message title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <!-- Before game process -->
+    <div id="beforeGame">
+        <form id="form">
+            <div style="padding-bottom: 20px" class="row" id="nameRow">
+                <div class="col-12 col-md-6 col-lg-6 col-sm-4">
+                    <label for="name">Insert name</label>
+                    <input type="text" id="name" name="name" placeholder="Placeholder" required>
                 </div>
-                <div class="modal-body"> High Scores Body</div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close High Scores BTN
+            </div>
+            <div id="submitRow" class="row" style="padding-bottom: 30px">
+                <div class="col-md-auto">
+                    <!-- Play button -->
+                    <button type="submit" class="btn btn-primary">Play</button>
+                </div>
+                <div class="col-md-auto">
+                    <!-- Settings button -->
+
+                    <button id="settings" class="btn btn-secondary" type="button">Settings</button>
+                </div>
+                <div class="col-md-auto">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                        High Scores
                     </button>
                 </div>
             </div>
-        </div>
-    </div>
-    <div id="input-data">
-        <form>
-            <div class="row">
-                <div class="col-6">
-                    <p> Select amount of rows:</p>
-                    <select id="rows-data">
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4" selected>4</option>
-                        <option value="5">5</option>
-                    </select>
-                </div>
-                <div class="col-6">
-                    <p> Select amount of cols:</p>
-                    <select id="cols-data">
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4" selected>4</option>
-                        <option value="5">5</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <p>Delay(in seconds):</p>
-                <div class="col">
-                    <div class="dropdown">
-                        <button class="btn btn-secondary btn-lg dropdown-toggle " type="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                            2
+        </form>
+
+        <!-- Modal for High Scores-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Message title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body"> High Scores Body</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close High Scores BTN
                         </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item">2</a></li>
-                            <li><a class="dropdown-item">3</a></li>
-                            <li><a class="dropdown-item">4</a></li>
-                            <li><a class="dropdown-item">5</a></li>
-                        </ul>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
+
+        <div id="input-data">
+            <form>
+                <div class="row">
+                    <div class="col-6">
+                        <p> Number of rows:</p>
+                        <select id="rows-data">
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4" selected>4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <p> Number of cols:</p>
+                        <select id="cols-data">
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4" selected>4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <p>Delay (in seconds):</p>
+                    <div class="col">
+                        <select id="display-time">
+                            <option value="0.5">0.5</option>
+                            <option value="1" selected>1</option>
+                            <option value="1.5">1.5</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 
+    <!-- Game process -->
     <div class="row-12 row-md-6 row-lg-6 row-sm-4">
         <list id="matrix">
 
