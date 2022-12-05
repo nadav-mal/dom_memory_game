@@ -7,7 +7,6 @@ const runGame = (gameData) => {
 const validateBoardInput = (gameData) => {
     let isEven = ((gameData.rows * gameData.cols) % 2 === 0)
     let nameValid = (gameData.name.length <= 12 && gameData.name.length > 0 && !(/\W/.test(gameData.name)))
-    console.log("isEven: " + isEven + " nameValid: " + nameValid)
     return (isEven && nameValid)
 }
 
@@ -20,32 +19,39 @@ const initAndDisplayBoard = (gameData) => {
     let revealed = false;
 
     for(let i=0; i<gameData.rows; i++) {
-        const newRow = document.createElement("ul")
+        const newRow = document.createElement("tr")
         for(let j=0; j<gameData.cols; j++) {
+            const col = document.createElement("td")
             const img = document.createElement('img');
+            img.className = "img-fluid unDiscovered"
             img.src = "Images/card.jpg";
             let index = i*gameData.cols + j;
-            img.addEventListener("click", (event) => {
-                if(!revealed) {
+            img.addEventListener("click", () => {
+                console.log(img.className + "  " + "revealed")
+                if(!revealed && (img.className.toString().includes("unDiscovered")) && img !== prevImg) {
                     img.src = "Images/" + permutation[index] + ".jpg";
 
                     if(counter % 2 !== 0) {
                         revealed = true;
-                        if(img.src !== prevImg.src)
+                        if(img.src !== prevImg.src && img !== prevImg)
                             setTimeout(() => {
                                 img.src = prevImg.src = "Images/card.jpg";
                                 revealed = false;
                             }, timeout)
                         else
+                        {
+                            img.className = prevImg.className = "img-fluid discovered"
                             revealed = false;
+                        }
                     }
                     else
                         prevImg = img;
-
+                    document.getElementById("colForCounter").innerHTML= "Steps: " + Math.floor(counter/2)
                     counter++;
                 }
             });
-            newRow.appendChild(img)
+            col.appendChild(img)
+            newRow.appendChild(col)
         }
         data.appendChild(newRow);
     }
@@ -83,24 +89,18 @@ const swapElements = (arr, i1, i2) => {
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("form").addEventListener("submit", (event) => {
         event.preventDefault();
-        console.log("HERE")
-        // we build the new product object from the form input:
         let gameData = {
             name: document.getElementById("name").value.trim(),
             rows: document.getElementById("rows-data").value,
             cols: document.getElementById("cols-data").value,
             displayTime: document.getElementById("display-time").value
         }
-
         if (validateBoardInput(gameData)) {
-            console.log("input is valid")
             runGame(gameData);
         } else
         {
             document.getElementById("name").innerHTML= "name is invalid"
         }
-        // if the product is not valid, we display the errors:
-        //   document.getElementById("errorMessages").innerHTML = utilities.convertErrorsToHtml(errorMessages);
     });
     document.getElementById("settings").addEventListener("click", () => {
         toggleHid("input-data")
@@ -120,7 +120,6 @@ let toggleSettingsUI = () => {
 
 let toggleHid = (id) => {
     let element = document.getElementById(id);
-    console.log("here")
     let hidden = element.getAttribute("hidden");
 
     if (hidden)

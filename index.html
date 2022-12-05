@@ -47,11 +47,11 @@
         </form>
 
         <!-- Modal for High Scores-->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="HighScoresModal" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Message title</h5>
+                        <h5 class="modal-title" id="HighScoresModal">Message title</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body"> High Scores Body</div>
@@ -102,9 +102,15 @@
 
     <!-- Game process -->
     <div class="row-12 row-md-6 row-lg-6 row-sm-4">
-        <list id="matrix">
+        <div class="row">
+            <div class="col-1" id="colForCounter"></div>
+            <div class="col-10">
+                <table class="-mx3" id="matrix">
+                </table>
+            </div>
+            <div class="col-1"></div>
+        </div>
 
-        </list>
 
         <button id="abandonBtn" type="submit" class="btn btn-primary" hidden="hidden">Abandon</button>
     </div>
