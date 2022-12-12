@@ -186,7 +186,7 @@
             let difficulty = Math.pow(game.timeout, -1);
             let optimal = gameData.rows * gameData.cols / 2;
             let actual = (Math.floor(game.counter / 2));
-            return Math.floor((optimal / actual) * difficulty * 100000 * ((optimal - 2) + 1));
+            return Math.floor((optimal / actual) * difficulty * 100000 * (optimal - 1));
         }
         /** checkInsert checks if the user hit the top scores (to know if we should display him)
          * @param newWinner - a player which won the game with his details: {rank,name,score}
