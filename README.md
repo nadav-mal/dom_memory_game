@@ -3,7 +3,6 @@
 
 # Authors:
 <p>Names: Ely Asaf and Nadav Malul</p>
-<p>IDs: 319027355 and 206762973</p>
 <p>Emails: elyas@edu.hac.ac.il and nadavma@edu.hac.ac.il</p>
 
 # Score calculation:
